@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: api-mobile
+
+server:
+  port: 9998
+  servlet:
+    context-path: "/api/mobile"
+
+management:
+  endpoint:
+    env:
+      enabled: false
+    beans:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+
+
+# To set thread isolation to SEMAPHORE
+# https://github.com/Netflix/Hystrix/wiki/Configuration
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+
+# OBS: aqui eu configuro o tempo de fechamento do circuito, o default e de 5000 milesegundos ou seja 5 segundos.
+# Exemplo: abaixo configurei pra 1 minuto, entao meu servico ou endpoint so vai receber outra requisicao apos 1 minuto,
+# recebendo uma nova chamada a cada um minuto configurado ate o circuito fechar, ou seja, o servico voltar a funcionar normalmente.
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 60000
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}

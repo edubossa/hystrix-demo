@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: api-gateway
+#  cloud:
+#    config:
+#      uri: http://${SPRING_CONFIG_URI:localhost:8888}
+
+server:
+  port: 9999
+
+management:
+  endpoint:
+    env:
+      enabled: false
+    beans:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${SPRING_EUREKA_SERVER:localhost:8761}/eureka/
+
+
+zuul:
+  prefix: /api
+  routes:
+    client1-ms:
+      path: /service-a-ms/**
+      serviceId: service-a-ms
+      stripPrefix: false
+    client2-ms:
+      path: /service-b-ms/**
+      serviceId: service-b-ms
+      stripPrefix: false
+    client3-ms:
+      path: /service-c-ms/**
+      serviceId: service-c-ms
+      stripPrefix: false
