@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: hystrix-dashboard
+  cloud:
+    config:
+      discovery:
+        enabled: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+

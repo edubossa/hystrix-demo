@@ -1,0 +1,9 @@
+server:
+  port: 8989
+
+
+turbine:
+  aggregator:
+    #cluster-config: SERVICE-A-MS
+  app-config: service-a-ms,service-b-ms,service-c-ms
+  cluster-name-expression: "'default'"

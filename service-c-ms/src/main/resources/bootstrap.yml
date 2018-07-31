@@ -3,9 +3,9 @@ spring:
     name: service-c-ms
 
 server:
-  port: ${ACCOUT_PORT:8083}
-  servlet:
-    context-path: "/service-c-ms"
+  port: ${SERVER_PORT:8083}
+#  servlet:
+#    context-path: "/service-c-ms"
 
 
 management:
