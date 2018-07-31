@@ -5,5 +5,5 @@ server:
 turbine:
   aggregator:
     #cluster-config: SERVICE-A-MS
-  app-config: service-a-ms,service-b-ms,service-c-ms
+  app-config: service-a-ms,service-b-ms,service-c-ms,api-mobile
   cluster-name-expression: "'default'"

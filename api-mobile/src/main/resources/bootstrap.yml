@@ -4,8 +4,8 @@ spring:
 
 server:
   port: 9998
-  servlet:
-    context-path: "/api/mobile"
+#  servlet:
+#    context-path: "/api/mobile"
 
 management:
   endpoint:
